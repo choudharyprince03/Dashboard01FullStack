@@ -1,6 +1,11 @@
 import {useForm} from "react-hook-form";
+import {useEffect, useState} from "react";
+import {getAllUsers} from "../../api/admin.api";
 
 const TaskForm=({onCreate})=>{
+    const [users, setUsers] = useState([]);
+    const [loadingUsers, setLoadingUsers] = useState(false);
+
     const {
         register, 
         handleSubmit,
@@ -9,7 +14,23 @@ const TaskForm=({onCreate})=>{
             defaultValues:{
                 priority: "medium"
             }
-        }); 
+        });
+    
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                setLoadingUsers(true);
+                const response = await getAllUsers();
+                setUsers(response.data.users || []);
+            } catch (err) {
+                console.error("Failed to fetch users:", err);
+            } finally {
+                setLoadingUsers(false);
+            }
+        };
+        fetchUsers();
+    }, []);
+
     const onSubmit = async(data)=>{
         try {
             await onCreate(data); 
@@ -75,6 +96,31 @@ const TaskForm=({onCreate})=>{
             <option value="medium">Medium</option>
             <option value="high">High</option>
             </select>
+        </div>
+
+        {/* Assign To User */}
+        <div>
+            <select
+            className="w-full p-2 bg-gray-700 text-white rounded"
+            {...register("assignee", {
+                required: "Please assign the task to a user"
+            })}
+            disabled={loadingUsers}
+            >
+            <option value="">
+                {loadingUsers ? "Loading users..." : "Select user to assign"}
+            </option>
+            {users.map((user) => (
+                <option key={user._id} value={user._id}>
+                    {user.name} ({user.email})
+                </option>
+            ))}
+            </select>
+            {errors.assignee && (
+            <p className="text-red-400 text-sm mt-1">
+                {errors.assignee.message}
+            </p>
+            )}
         </div>
 
         {/* Due Date */}

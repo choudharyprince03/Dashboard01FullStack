@@ -34,14 +34,15 @@ const Tasks = ()=>{
     const handleCreate = async(data)=>{
        const res = await createTask(data); 
         setTasks((prev)=>[res.data.task, ...prev]); 
+        alert('Task created successfully!'); 
     }
     const handleStatusUpdate =async(id,status)=>{
         const res = await updateTasks(id,{status}); 
-        setTasks((prev)=>[res.data.task, ...prev]); 
+        setTasks((prev)=>prev.map(task => task._id === id ? res.data.task : task)); 
     }
     const handleDelete =async(id)=>{
         await deleteTasks(id); 
-        setTasks((prev)=>[res.data.task, ...prev]);  
+        setTasks((prev)=>prev.filter(task => task._id !== id));  
     }; 
 
     //permissions 

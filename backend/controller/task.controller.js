@@ -9,6 +9,7 @@ const createTask= async(req,res,next)=>{
             description, 
             priority, 
             dueDate,
+            assignee,
         } = req.body;
     
         const task = await taskModel.create({
@@ -16,7 +17,7 @@ const createTask= async(req,res,next)=>{
             description, 
             priority, 
             dueDate,
-            assignee: req.user.id, 
+            assignee: assignee || req.user.id, 
             creator: req.user.id,
         }); 
 

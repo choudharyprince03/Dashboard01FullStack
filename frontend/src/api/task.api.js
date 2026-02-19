@@ -1,6 +1,6 @@
 import api from "./axios";
 
-const createTask = (data)=> api.post('/tasks',data); 
+const createTask = (data)=> api.post('/tasks', {...data}); 
 
 const getTasks = () => api.get('/tasks/my')
 

@@ -4,6 +4,7 @@ import {getInsights} from '../api/ai.api';
 import StatsCard from "../components/StatsCard";
 import RecentTasks from "../components/RecentTasks";
 import InsightPreview from "../components/InsightPreview";
+import TaskStats from "../components/TaskStats";
 
 const Dashboard = () => {
     const [tasks,setTasks] = useState([]);
@@ -48,6 +49,9 @@ const Dashboard = () => {
         <StatsCard title="In Progress" value={inProgress} />
         <StatsCard title="Blocked" value={blocked} />
       </div>
+
+      {/* Task Statistics Graphs */}
+      <TaskStats tasks={tasks} />
 
       {/* Recent Tasks */}
       <RecentTasks tasks={tasks.slice(0, 5)} />
