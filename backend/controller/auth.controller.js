@@ -69,7 +69,7 @@ const login = async(req,res,next)=>{
             },
 
             process.env.JWT_SECRET,
-             {expiresIn: "1d"}
+             {expiresIn: "1h"}
         )
 
         const{password: _,...safeUser} = userAccount.toObject(); 

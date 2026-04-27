@@ -21,7 +21,11 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-950">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#0A0F1C] relative overflow-hidden px-4 transition-colors duration-300">
+      {/* Background Orbs */}
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-300/40 dark:bg-purple-600/10 blur-[120px] pointer-events-none transition-colors duration-500" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-300/40 dark:bg-blue-600/10 blur-[120px] pointer-events-none transition-colors duration-500" />
+
       <SignupForm
         onSubmit={handleSignup}
         errorMessage={errorMessage}
