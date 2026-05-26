@@ -8,8 +8,8 @@ const UsersTable = ({ users, canPromote, onPromote }) => {
   }
 
   return (
-    <div className="bg-[#F7F6F2] rounded-xl border border-[#D8D3C7] overflow-hidden shadow-sm">
-      <table className="w-full text-left text-sm">
+    <div className="bg-[#F7F6F2] rounded-xl border border-[#D8D3C7] overflow-x-auto shadow-sm">
+      <table className="w-full text-left text-sm min-w-[600px]">
         <thead className="bg-[#EDEAE2] text-[#5E6473]">
           <tr>
             <th className="px-6 py-3">Name</th>
