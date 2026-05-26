@@ -2,16 +2,18 @@ import { useState, useEffect } from "react";
 import { getTasks } from "../api/task.api";
 import { getInsights } from "../api/ai.api";
 import StatsCard from "../components/StatsCard";
-import RecentTasks from "../components/RecentTasks";
 import InsightPreview from "../components/InsightPreview";
 import TaskStats from "../components/TaskStats";
-import { motion } from "framer-motion";
+import TaskManager from "../components/Tasks/TaskManager";
+import { motion as Motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [insight, setInsight] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     const loadDashboard = async () => {
@@ -30,11 +32,23 @@ const Dashboard = () => {
     loadDashboard();
   }, []);
 
+  const refreshInsight = async () => {
+    try {
+      setIsRefreshing(true);
+      const res = await getInsights(true);
+      setInsight(res.data.insight);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
   if (loading) {
     return (
-      <div className="h-full flex flex-col items-center justify-center text-gray-900 dark:text-white space-y-4 transition-colors">
-        <Loader2 className="w-10 h-10 animate-spin text-blue-600 dark:text-blue-500" />
-        <p className="text-gray-500 dark:text-gray-400 font-medium transition-colors">Loading your workspace...</p>
+      <div className="h-full flex flex-col items-center justify-center text-[#2C3040] space-y-4 transition-colors">
+        <Loader2 className="w-10 h-10 animate-spin text-[#6B8F71]" />
+        <p className="text-[#8A8F9E] font-medium transition-colors">Loading your workspace...</p>
       </div>
     );
   }
@@ -60,7 +74,7 @@ const Dashboard = () => {
   };
 
   return (
-    <motion.div
+    <Motion.div
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -68,42 +82,47 @@ const Dashboard = () => {
     >
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-500 dark:from-white dark:to-gray-400 transition-colors">
+          <h1 className="text-3xl font-bold text-[#2C3040] transition-colors">
             Overview
           </h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1 transition-colors">Here's what's happening with your projects today.</p>
+          <p className="text-[#7B8190] mt-1 transition-colors">Here's what's happening with your projects today.</p>
         </div>
       </div>
 
       {/* Stats Section */}
-      <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <Motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatsCard title="Total Tasks" value={total} />
         <StatsCard title="Completed" value={completed} />
         <StatsCard title="In Progress" value={inProgress} />
         <StatsCard title="Blocked" value={blocked} />
-      </motion.div>
+      </Motion.div>
 
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
         
         {/* Left Column: Stats & Recent */}
-        <motion.div variants={itemVariants} className="xl:col-span-2 space-y-8">
-          <div className="bg-white/80 dark:bg-[#121A2F]/60 backdrop-blur-md p-6 rounded-2xl border border-gray-200 dark:border-white/5 shadow-md dark:shadow-xl transition-colors duration-300">
-            <h3 className="text-lg font-bold mb-6 text-gray-900 dark:text-white transition-colors">Task Distribution</h3>
+        <Motion.div variants={itemVariants} className="xl:col-span-2 space-y-8">
+          <div className="bg-[#F7F6F2]/90 backdrop-blur-md p-6 rounded-2xl border border-[#D8D3C7] shadow-sm transition-colors duration-300">
+            <h3 className="text-lg font-bold mb-6 text-[#2C3040] transition-colors">Task Distribution</h3>
             <TaskStats tasks={tasks} />
           </div>
-          <RecentTasks tasks={tasks.slice(0, 5)} />
-        </motion.div>
+          <TaskManager
+            tasks={tasks}
+            setTasks={setTasks}
+            title="Manage Tasks"
+            description="Create, update, and clear tasks without leaving the dashboard."
+          />
+        </Motion.div>
 
         {/* Right Column: AI Insights */}
-        <motion.div variants={itemVariants} className="xl:col-span-1 h-full">
+        <Motion.div variants={itemVariants} className="xl:col-span-1 h-full">
           <div className="sticky top-6">
-            <InsightPreview insight={insight} />
+            <InsightPreview insight={insight} onRefresh={refreshInsight} isRefreshing={isRefreshing} />
           </div>
-        </motion.div>
+        </Motion.div>
       </div>
 
-    </motion.div>
+    </Motion.div>
   );
 };
 

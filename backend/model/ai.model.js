@@ -19,6 +19,10 @@ const AiInsightSchema = mongoose.Schema({
     content: {
         type: String ,
         required: true
+    },
+    modelUsed: {
+        type: String,
+        required: false
     }
 },{timestamps: true}); 
 

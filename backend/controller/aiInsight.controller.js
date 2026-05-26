@@ -40,25 +40,30 @@ export const getAIInsight = async (req, res, next) => {
       prompt = buildUserPrompt(summary);
     }
 
-    // Optional caching (latest insight)
-    const existingInsight = await AIInsight.findOne({ scope, target })
-      .sort({ createdAt: -1 });
+    const forceRefresh = req.query.refresh === 'true';
 
-    if (existingInsight) {
-      return res.json({
-        insight: existingInsight,
-        cached: true
-      });
+    if (!forceRefresh) {
+      // Optional caching (latest insight)
+      const existingInsight = await AIInsight.findOne({ scope, target })
+        .sort({ createdAt: -1 });
+
+      if (existingInsight) {
+        return res.json({
+          insight: existingInsight,
+          cached: true
+        });
+      }
     }
 
     // Run AI
-    const content = await runLLM(prompt);
+    const { content, modelUsed } = await runLLM(prompt);
 
     // Store insight
     const insight = await AIInsight.create({
       scope,
       target,
-      content
+      content,
+      modelUsed
     });
 
     res.json({

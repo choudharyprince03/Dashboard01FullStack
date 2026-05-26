@@ -40,8 +40,8 @@ const Admin = () => {
     loadUsers();
   }, []);
 
-  if (loading) return <div className="text-white">Loading users...</div>;
-  if (error) return <div className="text-red-400">{error}</div>;
+  if (loading) return <div className="text-[#2C3040]">Loading users...</div>;
+  if (error) return <div className="text-[#A7625B]">{error}</div>;
 
   return (
     <div className="space-y-6">

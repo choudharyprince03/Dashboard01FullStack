@@ -45,13 +45,13 @@ const TaskForm = ({ onCreate }) => {
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="bg-white/80 dark:bg-[#121A2F]/80 backdrop-blur-md p-6 rounded-2xl border border-blue-200 dark:border-blue-500/30 shadow-md dark:shadow-[0_0_30px_rgba(59,130,246,0.1)] space-y-5 mb-8 transition-colors duration-300"
+            className="bg-[#F7F6F2]/95 backdrop-blur-md p-6 rounded-2xl border border-[#C6D7C2] shadow-sm space-y-5 mb-8 transition-colors duration-300"
         >
-            <div className="flex items-center gap-3 border-b border-gray-200 dark:border-white/5 pb-4 transition-colors">
-                <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center border border-blue-200 dark:border-blue-500/30 transition-colors">
-                    <span className="text-blue-600 dark:text-blue-400 font-bold">+</span>
+            <div className="flex items-center gap-3 border-b border-[#D8D3C7] pb-4 transition-colors">
+                <div className="w-8 h-8 rounded-lg bg-[#DFE8DC] flex items-center justify-center border border-[#C6D7C2] transition-colors">
+                    <span className="text-[#48684F] font-bold">+</span>
                 </div>
-                <h3 className="text-gray-900 dark:text-white text-xl font-semibold transition-colors">
+                <h3 className="text-[#2C3040] text-xl font-semibold transition-colors">
                     Create New Task
                 </h3>
             </div>
@@ -59,11 +59,11 @@ const TaskForm = ({ onCreate }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* Title */}
                 <div className="md:col-span-2 space-y-1.5">
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">Task Title</label>
+                    <label className="text-sm font-medium text-[#5E6473] transition-colors">Task Title</label>
                     <input
                         type="text"
                         placeholder="Enter task title..."
-                        className="w-full p-3 bg-gray-50 dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600"
+                        className="w-full p-3 bg-[#EDEAE2] border border-[#D8D3C7] text-[#2C3040] rounded-xl focus:border-[#6B8F71] focus:ring-1 focus:ring-[#6B8F71] outline-none transition-all placeholder:text-[#8A8F9E]"
                         {...register("title", {
                             required: "Title is required",
                             minLength: {
@@ -73,30 +73,30 @@ const TaskForm = ({ onCreate }) => {
                         })}
                     />
                     {errors.title && (
-                        <p className="text-red-500 dark:text-red-400 text-sm">{errors.title.message}</p>
+                        <p className="text-[#A7625B] text-sm">{errors.title.message}</p>
                     )}
                 </div>
 
                 {/* Description */}
                 <div className="md:col-span-2 space-y-1.5">
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">Description</label>
+                    <label className="text-sm font-medium text-[#5E6473] transition-colors">Description</label>
                     <textarea
                         placeholder="Add more details about this task..."
                         rows={3}
-                        className="w-full p-3 bg-gray-50 dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600 resize-none"
+                        className="w-full p-3 bg-[#EDEAE2] border border-[#D8D3C7] text-[#2C3040] rounded-xl focus:border-[#6B8F71] focus:ring-1 focus:ring-[#6B8F71] outline-none transition-all placeholder:text-[#8A8F9E] resize-none"
                         {...register("description", { required: "Description is required" })}
                     />
                     {errors.description && (
-                        <p className="text-red-500 dark:text-red-400 text-sm">{errors.description.message}</p>
+                        <p className="text-[#A7625B] text-sm">{errors.description.message}</p>
                     )}
                 </div>
 
                 {/* Priority */}
                 <div className="space-y-1.5">
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">Priority</label>
+                    <label className="text-sm font-medium text-[#5E6473] transition-colors">Priority</label>
                     <div className="relative">
                         <select
-                            className="w-full p-3 bg-gray-50 dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all appearance-none cursor-pointer"
+                            className="w-full p-3 bg-[#EDEAE2] border border-[#D8D3C7] text-[#2C3040] rounded-xl focus:border-[#6B8F71] focus:ring-1 focus:ring-[#6B8F71] outline-none transition-all appearance-none cursor-pointer"
                             {...register("priority")}
                         >
                             <option value="low">Low Priority</option>
@@ -104,27 +104,27 @@ const TaskForm = ({ onCreate }) => {
                             <option value="high">High Priority</option>
                         </select>
                         <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
-                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg className="w-4 h-4 text-[#8A8F9E]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
                 </div>
 
                 {/* Due Date */}
                 <div className="space-y-1.5">
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">Due Date</label>
+                    <label className="text-sm font-medium text-[#5E6473] transition-colors">Due Date</label>
                     <input
                         type="date"
-                        className="w-full p-3 bg-gray-50 dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 text-gray-900 dark:text-gray-300 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all dark:[color-scheme:dark]"
+                        className="w-full p-3 bg-[#EDEAE2] border border-[#D8D3C7] text-[#2C3040] rounded-xl focus:border-[#6B8F71] focus:ring-1 focus:ring-[#6B8F71] outline-none transition-all"
                         {...register("dueDate")}
                     />
                 </div>
 
                 {/* Assign To User */}
                 <div className="md:col-span-2 space-y-1.5">
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">Assign To</label>
+                    <label className="text-sm font-medium text-[#5E6473] transition-colors">Assign To</label>
                     <div className="relative">
                         <select
-                            className="w-full p-3 bg-gray-50 dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full p-3 bg-[#EDEAE2] border border-[#D8D3C7] text-[#2C3040] rounded-xl focus:border-[#6B8F71] focus:ring-1 focus:ring-[#6B8F71] outline-none transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                             {...register("assignee", {
                                 required: "Please assign the task to a user"
                             })}
@@ -140,11 +140,11 @@ const TaskForm = ({ onCreate }) => {
                             ))}
                         </select>
                         <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
-                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg className="w-4 h-4 text-[#8A8F9E]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
                     {errors.assignee && (
-                        <p className="text-red-500 dark:text-red-400 text-sm">{errors.assignee.message}</p>
+                        <p className="text-[#A7625B] text-sm">{errors.assignee.message}</p>
                     )}
                 </div>
             </div>
@@ -153,7 +153,7 @@ const TaskForm = ({ onCreate }) => {
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-xl font-medium transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-[0_0_20px_rgba(37,99,235,0.3)]"
+                    className="flex items-center gap-2 bg-[#6B8F71] hover:bg-[#5F8065] text-white px-6 py-3 rounded-xl font-medium transition-all shadow-sm hover:shadow-md active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                     {isSubmitting ? (
                         <>

@@ -1,8 +1,7 @@
-import { createContext,useEffect,useState} from "react";
+import { useEffect,useState} from "react";
 import { loginUser,signUpUser,getUserProfile } from "../api/auth.api";
 import { getToken,setToken,removeToken } from "../utils/auth";
-
-const AuthContext = createContext(null); 
+import { AuthContext } from "./context"; 
 
 const AuthProvider =({children})=>{
   const[user,setUser] = useState(null); 
@@ -22,7 +21,7 @@ const AuthProvider =({children})=>{
             setUser({...res.data.user, 
                     permissions: res.data.permissions ||[]
             }); 
-        } catch (error) {
+        } catch {
             setUser(null);
             removeToken(); 
         } finally{
@@ -71,6 +70,5 @@ const AuthProvider =({children})=>{
 
 
 export {
-  AuthContext, 
   AuthProvider
 }

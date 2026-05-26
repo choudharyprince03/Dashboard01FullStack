@@ -20,6 +20,7 @@ Rules:
 - Do not speculate
 - Do not assign blame
 - Do not suggest system changes
+- Do not use any markdown formatting (no bold text, no asterisks **, no headers #)
 ` 
 };
 
@@ -50,6 +51,7 @@ Rules:
 - Be factual
 - Do not guess intent
 - Do not suggest disciplinary actions
+- Do not use any markdown formatting (no bold text, no asterisks **, no headers #)
 `;
 };
 
@@ -69,6 +71,7 @@ Analyze system-level patterns and respond with:
 Rules:
 - High-level analysis only
 - No operational instructions
+- Do not use any markdown formatting (no bold text, no asterisks **, no headers #)
 `;
 };
 

@@ -8,12 +8,12 @@ const Insights = () => {
   const [cached, setCached] = useState(false);
   const [error, setError] = useState("");
 
-  const loadInsights = async () => {
+  const loadInsights = async (forceRefresh = false) => {
     try {
       setLoading(true);
       setError("");
 
-      const res = await getInsights();
+      const res = await getInsights(forceRefresh);
 
       setInsight(res.data.insight);
       setCached(res.data.cached);
@@ -33,7 +33,7 @@ const Insights = () => {
 
   if (loading) {
     return (
-      <div className="text-white">
+      <div className="text-[#2C3040]">
         Generating insights...
       </div>
     );
@@ -41,7 +41,7 @@ const Insights = () => {
 
   if (error) {
     return (
-      <div className="text-red-400">
+      <div className="text-[#A7625B]">
         {error}
       </div>
     );
@@ -52,7 +52,7 @@ const Insights = () => {
       <InsightCard
         insight={insight}
         cached={cached}
-        onRefresh={loadInsights}
+        onRefresh={() => loadInsights(true)}
       />
     </div>
   );
