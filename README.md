@@ -1,159 +1,116 @@
-<!-- HEADER -->
+# 🌌 AI-Powered Full-Stack Task Dashboard
+
+A premium, futuristic full-stack MERN dashboard application built with modern architecture, fine-grained Role-Based Access Control (RBAC), and real-time AI Insights powered by OpenRouter.
 
 <div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,100:2c5364&height=200&section=header&text=AI%20Task%20Dashboard&fontSize=40&fontColor=ffffff&animation=fadeIn" />
-
-<img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=22&duration=3000&color=00F7FF&center=true&vCenter=true&width=600&lines=Role-Based+Task+Management;AI-Powered+Insights;Secure+JWT+Authentication;Enterprise-Grade+Architecture" />
-
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,100:2c5364&height=200&section=header&text=AI%20Task%20Dashboard&fontSize=40&fontColor=ffffff&animation=fadeIn" alt="AI Task Dashboard Banner" />
+  <br />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=22&duration=3000&color=00F7FF&center=true&vCenter=true&width=600&lines=Role-Based+Task+Management;AI-Powered+Insights;Secure+JWT+Authentication;Enterprise-Grade+Architecture" alt="Typing SVG" />
 </div>
 
 ---
 
-# 🌌 Overview
+## 🌟 Key Features
 
-> A futuristic, AI-powered task management dashboard  
-> built with modern full-stack architecture and fine-grained role-based access control.
-
-This system includes:
-
-- 🔐 JWT Authentication
-- 🧠 AI Insights Engine
-- 🛡 Role & Permission-based Authorization
-- ⚡ Real-time Task State Updates
-- 🎛 Admin Management Panel
-- 🧩 Modular Service Architecture
+*   **🔐 Secure JWT Authentication:** Robust cookie/token-based authentication with auto-expiration handling and user context preservation.
+*   **🛡️ Role-Based Access Control (RBAC):** 
+    *   **Admin:** Complete control over tasks, user management, promoting user roles, and advanced insights.
+    *   **Manager:** Full CRUD control over tasks (create, assign, update, delete) and dashboard insights.
+    *   **User:** Personal task interaction (viewing tasks, updating status) and role-tailored dashboard insights.
+*   **🧠 Intelligent AI Insights Engine:** Leverages OpenRouter models (like LLaMA 3.3 70B) to generate actionable insights based on task status, completion metrics, and user roles. 
+*   **⚡ Fresh Insight Refreshing:** Instant, cache-busting AI insights with detailed "Powered by" model-attribution tags.
+*   **🎨 Premium Glassmorphic UI:** Built using React, TailwindCSS, Framer Motion, and Lucide React icons, offering custom animations and modern responsive designs.
 
 ---
 
-# 🧠 Architecture
+## ⚙️ Tech Stack
 
-Frontend (React + Context API + Tailwind)
-↓
-Axios API Layer
-↓
-Express Backend
-↓
-JWT + Permission Middleware
-↓
-MongoDB Database
-↓
-AI Aggregation Engine → LLM Service
-
-
+| Component | Technology | Description |
+| :--- | :--- | :--- |
+| **Frontend** | React 19, Vite, TailwindCSS | Ultra-fast client-side builds, glassmorphism design system. |
+| **Animation** | Framer Motion | Smooth transitions and state-based page animations. |
+| **Backend** | Node.js, Express | Modular, service-oriented API endpoints. |
+| **Database** | MongoDB, Mongoose | Scalable Document Database modeling. |
+| **Authentication**| JSON Web Tokens (JWT), bcrypt | Secure password hashing and request verification. |
+| **AI Integration**| OpenAI SDK + OpenRouter | Custom-engineered prompts dynamically built based on roles. |
 
 ---
 
-# ⚙️ Tech Stack
+## 📁 Repository Structure
 
-<div align="center">
-
-| Frontend | Backend | AI | Database |
-|----------|----------|-----|-----------|
-| React | Express | Gemini / OpenAI | MongoDB |
-| TailwindCSS | JWT | Custom Prompt Engine | Mongoose |
-| Context API | Role Middleware | Aggregation Layer | |
-
-</div>
-
----
-
-# 🔐 Role-Based System
-
-### 👤 User
-- View tasks
-- Update own task status
-- View AI insights
-
-### 👔 Manager
-- Create tasks
-- Assign tasks
-- Update status
-- View insights
-
-### 👑 Admin
-- All manager permissions
-- View users
-- Promote users
-
-Permissions are enforced:
-
-- On Backend (secure)
-- On Frontend (UI visibility control)
+```text
+Dashboard01FullStack/
+├── backend/
+│   ├── config/          # DB connections
+│   ├── controller/      # Route controllers (Auth, Tasks, Admin, AI)
+│   ├── middleware/      # Authentication & role verification
+│   ├── model/           # Mongoose schemas (User, Task, AIInsight)
+│   ├── routers/         # Express API endpoints
+│   ├── services/        # Business logic (LLM integrations, AI Prompt builder)
+│   ├── app.js           # App setup (CORS, Middlewares)
+│   └── server.js        # Entry point
+│
+└── frontend/
+    ├── src/
+    │   ├── api/         # Axios configuration & API client services
+    │   ├── auth/        # Auth Context and Provider
+    │   ├── components/  # Layout elements & UI cards (InsightsCard, TaskList)
+    │   ├── Pages/       # Dashboard, Login, Admin, Task pages
+    │   └── App.jsx      # Navigation routing
+```
 
 ---
 
-# 🧠 AI Insight Engine
+## 🚀 Setup & Installation
 
-The AI module:
+### Prerequisites
+*   Node.js (v18+)
+*   MongoDB (Local or Atlas Cluster)
+*   OpenRouter API Key
 
-1. Aggregates task data
-2. Builds dynamic prompt
-3. Sends structured request to LLM
-4. Caches response
-5. Returns actionable insights
+### Backend Setup
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env` file in the `backend/` directory:
+   ```env
+   PORT=3000
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret
+   OPENROUTER_API_KEY=your_openrouter_api_key
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-Example insight:
-
-> “Completion rate is strong, but blocked tasks are increasing. Consider prioritizing task unblocking.”
+### Frontend Setup
+1. Navigate to the frontend directory:
+   ```bash
+   cd ../frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the Vite dev server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
+## 🌐 Deployment Configuration
 
+This project is pre-configured for a split full-stack deployment (e.g., Render/Railway for backend, Vercel/Netlify for frontend):
 
-
-frontend/
- ├── auth/
- ├── api/
- ├── components/
- ├── layout/
- ├── pages/
- ├── hooks/
- └── utils/
-
-backend/
- ├── controllers/
- ├── middleware/
- ├── models/
- ├── routes/
- ├── services/
- └── config/
-
-🚀 Features
-
-Dynamic Permission Gate
-
-Task Status Lifecycle
-
-AI-Driven Analytics
-
-JWT Token Security
-
-Role Escalation System
-
-Clean Modular Codebase
-
-🔮 Future Enhancements
-
-Rate Limiting
-
-Input Validators
-
-WebSockets
-
-Real-Time Notifications
-
-CI/CD Pipeline
-
-Docker Deployment
-
-Dark/Light Mode Toggle
-
-🧩 Environment Setup
-Backend
-npm install
-npm run dev
-
-Frontend
-npm install
-npm run dev
+*   **CORS Enabled:** The backend app automatically supports cross-origin requests.
+*   **Dynamic API Switching:** The frontend Axios instance automatically switches to your production backend via the `VITE_API_URL` environment variable:
+    *   Set `VITE_API_URL` in your frontend host environment (e.g. `https://your-backend.onrender.com`).
+*   **SPA Redirects:** A `vercel.json` file is included in the `frontend` to route all page requests to `index.html` for clean React client-side routing.
