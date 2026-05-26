@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import errorMiddleware from './middleware/error.middleware.js';
 import authRouter from "./routers/auth.router.js"; 
 import adminRouter from "./routers/admin.router.js"; 
@@ -7,6 +8,7 @@ import AIrouter from "./routers/ai.router.js"
 
 const app = express(); 
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/',(req,res)=>{
