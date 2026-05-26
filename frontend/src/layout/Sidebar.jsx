@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { PERMISSIONS } from "../utils/Permissions";
 import usePermission from "../hooks/usePermission";
-import { LayoutDashboard, CheckSquare, Sparkles, Users, X } from "lucide-react";
+import { LayoutDashboard, CheckSquare, Sparkles, Users, X, Orbit } from "lucide-react";
 
 const Sidebar = ({ isOpen, onClose }) => {
 
@@ -28,7 +28,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         <div className="flex items-center justify-between mb-10 mt-2">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-[#6B8F71] flex items-center justify-center shadow-sm">
-              <Sparkles className="w-5 h-5 text-white" />
+              <Orbit className="w-5 h-5 text-white animate-spin-slow" />
             </div>
             <h2 className="text-2xl font-bold text-[#2C3040]">
               Nexus

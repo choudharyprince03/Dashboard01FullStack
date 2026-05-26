@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { motion as Motion } from "framer-motion";
-import { LogIn, Mail, Lock, Loader2, Sparkles } from "lucide-react";
+import { LogIn, Mail, Lock, Loader2, Orbit } from "lucide-react";
 
 const LoginForm = ({ onSubmit, errorMessage }) => {
   const {
@@ -26,7 +26,7 @@ const LoginForm = ({ onSubmit, errorMessage }) => {
 
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#DFE8DC] border border-[#C6D7C2] mb-6 shadow-sm transition-colors">
-            <Sparkles className="w-8 h-8 text-[#6B8F71] transition-colors" />
+            <Orbit className="w-8 h-8 text-[#6B8F71] transition-colors animate-spin-slow" />
           </div>
           <h2 className="text-3xl font-bold text-[#2C3040] transition-colors">
             Welcome Back
